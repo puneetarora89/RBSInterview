@@ -1,0 +1,70 @@
+<div class="container">
+    <h2 class="f-l">Employee Details</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Employee Name
+                <span ng-switch="sort">
+                <i ng-click="recordFetcher('nmAsc')" ng-switch-when="nmDesc" class="fa fa-sort-asc arrow-cursor"></i>
+                <i ng-click="recordFetcher('nmDesc')" ng-switch-when="nmAsc" class="fa fa-sort-desc arrow-cursor"></i>
+                    <i ng-click="recordFetcher('nmDesc')" ng-switch-default class="fa fa-sort arrow-cursor"></i>
+            </span>
+                <input type="text" ng-model="empName" />  <span>
+                <a class="btn-primary btn" ng-click="filterByName()">Filter</a></span>
+            </th>
+            <th>Salary {{sort}}<span ng-switch="sort">
+                <i ng-click="recordFetcher('salAsc')" ng-switch-when="salDesc" class="fa fa-sort-asc arrow-cursor"></i>
+                <i ng-click="recordFetcher('salDesc')" ng-switch-when="salAsc" class="fa fa-sort-desc arrow-cursor"></i>
+                <i ng-click="recordFetcher('salDesc')" ng-switch-default class="fa fa-sort arrow-cursor"></i>
+            </span> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="emp in employeeList">
+            <td><a data-toggle="modal" data-target="#myModal" ng-click="showEmp(emp)">{{emp.employeeName}}</a></td>
+            <td>{{emp.salary}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Employee Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <td>Employee ID</td>
+                            <td>{{currEmp.employeeId}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Name</td>
+                            <td>{{currEmp.employeeName}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Salary</td>
+                            <td>{{currEmp.salary}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<style>
+    .arrow-cursor{cursor: pointer}
+</style>
